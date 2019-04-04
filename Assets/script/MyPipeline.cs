@@ -20,18 +20,20 @@ namespace script
         }
 
         private static CullResults _cull ;
-
         private static readonly CommandBuffer CameraBuffer = new CommandBuffer {
             name = "Render Camera"
         };
         private static void Render (ScriptableRenderContext context, Camera camera) {
             context.SetupCameraProperties(camera);
-        
+            
+            // 剔除检查 
             if (!CullResults.GetCullingParameters(camera, out var cullparamet))    return;
+            
 #if UNITY_EDITOR
             if(camera.cameraType == CameraType.SceneView)
                 ScriptableRenderContext.EmitWorldGeometryForSceneView(camera);
 #endif   
+            // 剔除 
             CullResults.Cull(ref cullparamet, context,ref _cull);
         
             var clearFlags = camera.clearFlags;
@@ -58,8 +60,6 @@ namespace script
             drawRendererSettings.sorting.flags = SortFlags.CommonTransparent ;
             filterRendererSettings.renderQueueRange=RenderQueueRange.transparent;
             context.DrawRenderers(_cull.visibleRenderers,ref drawRendererSettings,filterRendererSettings);
-        
-        
         
             CameraBuffer.EndSample("Render Camera");
             context.ExecuteCommandBuffer(CameraBuffer);
