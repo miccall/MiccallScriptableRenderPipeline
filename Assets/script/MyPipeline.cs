@@ -10,6 +10,14 @@ namespace script
 {
     public class MyPipeline : RenderPipeline
     {
+        private readonly DrawRendererFlags _drawFlags;
+
+        public MyPipeline (bool dynamicBatching) {
+            if (dynamicBatching) {
+                _drawFlags = DrawRendererFlags.EnableDynamicBatching;
+            }
+        }
+        
         public override void Render(ScriptableRenderContext renderContext, Camera[] cameras)
         {
             base.Render(renderContext, cameras);
@@ -19,11 +27,11 @@ namespace script
             }
         }
 
-        private static CullResults _cull ;
-        private static readonly CommandBuffer CameraBuffer = new CommandBuffer {
+        private  CullResults _cull ;
+        private  readonly CommandBuffer _cameraBuffer = new CommandBuffer {
             name = "Render Camera"
         };
-        private static void Render (ScriptableRenderContext context, Camera camera) {
+        private  void Render (ScriptableRenderContext context, Camera camera) {
             context.SetupCameraProperties(camera);
             
             // 剔除检查 
@@ -38,19 +46,20 @@ namespace script
         
             var clearFlags = camera.clearFlags;
        
-            CameraBuffer.ClearRenderTarget(
+            _cameraBuffer.ClearRenderTarget(
                 (CameraClearFlags.Depth & clearFlags )!=0 ,
                 (CameraClearFlags.Color & clearFlags)!=0,
                 camera.backgroundColor );
-            CameraBuffer.BeginSample("Render Camera");
+            _cameraBuffer.BeginSample("Render Camera");
         
-            CameraBuffer.Clear();
+            _cameraBuffer.Clear();
 
             var drawRendererSettings = new DrawRendererSettings(camera, new ShaderPassName("SRPDefaultUnlit"))
             {
-                sorting = {flags = SortFlags.CommonOpaque}
+                sorting = {flags = SortFlags.CommonOpaque},
+                // 开启动态批处理
+                flags = _drawFlags
             };
-        
             var  filterRendererSettings = new FilterRenderersSettings(true){renderQueueRange = RenderQueueRange.opaque};
             context.DrawRenderers(_cull.visibleRenderers,ref drawRendererSettings,filterRendererSettings);
         
@@ -61,16 +70,16 @@ namespace script
             filterRendererSettings.renderQueueRange=RenderQueueRange.transparent;
             context.DrawRenderers(_cull.visibleRenderers,ref drawRendererSettings,filterRendererSettings);
         
-            CameraBuffer.EndSample("Render Camera");
-            context.ExecuteCommandBuffer(CameraBuffer);
-            CameraBuffer.Clear();
+            _cameraBuffer.EndSample("Render Camera");
+            context.ExecuteCommandBuffer(_cameraBuffer);
+            _cameraBuffer.Clear();
             context.Submit();
         }
 
-        private static Material _errorMaterial;
+        private  Material _errorMaterial;
         
         [Conditional("DEVELOPMENT_BUILD"), Conditional("UNITY_EDITOR")]
-        private static void DrawDefaultPipeline(ScriptableRenderContext context, Camera camera)
+        private  void DrawDefaultPipeline(ScriptableRenderContext context, Camera camera)
         {
             if (_errorMaterial == null) {
                 var errorShader = Shader.Find("Hidden/InternalErrorShader");

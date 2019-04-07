@@ -7,6 +7,14 @@
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="material" t="Include">
+          <e p="shader" t="Include">
+            <e p="unlit.shader" t="Include" />
+          </e>
+          <e p="ShaderLibrary" t="Include">
+            <e p="Unlit.hlsl" t="Include" />
+          </e>
+        </e>
         <e p="Plugins" t="Include">
           <e p="GitHub" t="Include">
             <e p="Editor" t="Include">

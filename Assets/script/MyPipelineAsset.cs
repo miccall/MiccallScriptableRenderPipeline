@@ -7,20 +7,10 @@ using UnityEngine.Experimental.Rendering;
 [CreateAssetMenu(menuName = "Rendering/My Pipeline")]
 public class MyPipelineAsset : RenderPipelineAsset
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    bool dynamicBatching;
+   protected override IRenderPipeline InternalCreatePipeline()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    protected override IRenderPipeline InternalCreatePipeline()
-    {
-        return new MyPipeline();
+        return new MyPipeline(dynamicBatching);
     }
 }
