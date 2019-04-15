@@ -3,9 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="7845b830-371b-4af3-93fe-df4e245c7863" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/material/MyUnlit.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/material/MyUnlit.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/material/ShaderLibrary/Unlit.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/material/ShaderLibrary/Unlit.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/material/shader/Unlit.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/material/shader/Unlit.shader" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/script/MyPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/script/MyPipeline.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/script/MyPipelineAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/script/MyPipelineAsset.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/script/my pipline.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/script/my pipline.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,23 +23,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/script/MyPipeline.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
+            <state relative-caret-position="551">
+              <caret line="98" column="8" lean-forward="true" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="8" />
               <folding>
-                <marker date="1554535106757" expanded="false" signature="6:150" ph="..." />
-                <marker date="1554535106757" expanded="true" signature="151:245" ph="/* ReSharper disable StringLiteralTypo ... */" />
-                <marker date="1554535106757" expanded="true" signature="263:4277" ph="{...}" />
-                <marker date="1554535106757" expanded="true" signature="310:4275" ph="{...}" />
-                <marker date="1554535106757" expanded="true" signature="422:552" ph="{...}" />
-                <marker date="1554535106757" expanded="true" signature="457:542" ph="{...}" />
-                <marker date="1554535106757" expanded="true" signature="654:841" ph="{...}" />
-                <marker date="1554535106757" expanded="true" signature="757:831" ph="{...}" />
-                <marker date="1554535106757" expanded="true" signature="954:1000" ph="{...}" />
-                <marker date="1554535106757" expanded="true" signature="1080:2951" ph="{...}" />
-                <marker date="1554535106757" expanded="true" signature="2014:2151" ph="{...}" />
-                <marker date="1554535106757" expanded="true" signature="3165:4269" ph="{...}" />
-                <marker date="1554535106757" expanded="true" signature="3216:3446" ph="{...}" />
-                <marker date="1554535106757" expanded="true" signature="3354:3431" ph="{...}" />
+                <marker date="1555335118263" expanded="false" signature="6:150" ph="..." />
+                <marker date="1555335118263" expanded="true" signature="151:245" ph="/* ReSharper disable StringLiteralTypo ... */" />
+                <marker date="1555335118263" expanded="true" signature="263:5153" ph="{...}" />
+                <marker date="1555335118263" expanded="true" signature="310:5151" ph="{...}" />
+                <marker date="1555335118263" expanded="true" signature="534:580" ph="{...}" />
+                <marker date="1555335118263" expanded="false" signature="656:949" ph="{...}" />
+                <marker date="1555335118263" expanded="true" signature="717:802" ph="{...}" />
+                <marker date="1555335118263" expanded="true" signature="858:939" ph="{...}" />
+                <marker date="1555335118263" expanded="false" signature="1051:1238" ph="{...}" />
+                <marker date="1555335118263" expanded="true" signature="1154:1228" ph="{...}" />
+                <marker date="1555335118263" expanded="true" signature="1318:3878" ph="{...}" />
+                <marker date="1555335118263" expanded="true" signature="2425:2551" ph="/* ================== draw  ============================= ... */" />
+                <marker date="1555335118263" expanded="true" signature="2675:2812" ph="{...}" />
+                <marker date="1555335118263" expanded="true" signature="2914:2988" ph="{...}" />
+                <marker date="1555335118263" expanded="false" signature="4041:5145" ph="{...}" />
+                <marker date="1555335118263" expanded="true" signature="4092:4322" ph="{...}" />
+                <marker date="1555335118263" expanded="true" signature="4230:4307" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -43,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/material/ShaderLibrary/Unlit.hlsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+            <state relative-caret-position="460">
+              <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -52,14 +60,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/material/shader/Unlit.shader">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+            <state relative-caret-position="345">
+              <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
               <folding>
-                <marker date="1554534840664" expanded="true" signature="26:368" ph="{...}" />
-                <marker date="1554534840664" expanded="true" signature="47:105" ph="{...}" />
-                <marker date="1554534840664" expanded="true" signature="124:366" ph="{...}" />
-                <marker date="1554534840664" expanded="true" signature="147:360" ph="{...}" />
-                <marker date="1554534840664" expanded="true" signature="186:343" ph="{...}" />
+                <marker date="1555326899244" expanded="true" signature="26:473" ph="{...}" />
+                <marker date="1555326899244" expanded="true" signature="47:105" ph="{...}" />
+                <marker date="1555326899244" expanded="true" signature="124:471" ph="{...}" />
+                <marker date="1555326899244" expanded="true" signature="147:465" ph="{...}" />
+                <marker date="1555326899244" expanded="true" signature="186:448" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/script/InstancedColor.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="2" column="45" lean-forward="true" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
+              <folding>
+                <marker date="1555333902728" expanded="true" signature="64:576" ph="{...}" />
+                <marker date="1555333902728" expanded="true" signature="279:308" ph="{...}" />
+                <marker date="1555333902728" expanded="true" signature="341:574" ph="{...}" />
+                <marker date="1555333902728" expanded="true" signature="379:448" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -68,12 +91,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/script/MyPipelineAsset.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="13" column="47" lean-forward="true" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+            <state relative-caret-position="297">
+              <caret line="13" column="56" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="56" />
               <folding>
-                <marker date="1554534975495" expanded="false" signature="6:134" ph="..." />
-                <marker date="1554534975495" expanded="true" signature="240:414" ph="{...}" />
-                <marker date="1554534975495" expanded="true" signature="352:412" ph="{...}" />
+                <marker date="1555326412389" expanded="false" signature="6:134" ph="..." />
+                <marker date="1555326412389" expanded="true" signature="240:469" ph="{...}" />
+                <marker date="1555326412389" expanded="true" signature="398:467" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -81,13 +104,18 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>CullResults</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D616BE05-755D-41A0-8981-0B5C14E4DD50/3e/3cc46544/CommandBuffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@4.10.0-preview/ShaderLibrary/Common.hlsl" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Temp/Compiled-MyPipeLine-Unlit.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/script/InstancedColor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/script/MyPipelineAsset.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/material/ShaderLibrary/Unlit.hlsl" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/script/MyPipeline.cs" root0="FORCE_HIGHLIGHTING" />
@@ -101,9 +129,10 @@
         <option value="$PROJECT_DIR$/Assets/material/shader/Unlit.hlsl" />
         <option value="$PROJECT_DIR$/Assets/material/shader/unlit.shader" />
         <option value="$PROJECT_DIR$/Assets/material/ShaderLibrary/unlit.shader" />
-        <option value="$PROJECT_DIR$/Assets/material/ShaderLibrary/Unlit.hlsl" />
-        <option value="$PROJECT_DIR$/Assets/material/shader/Unlit.shader" />
         <option value="$PROJECT_DIR$/Assets/script/MyPipelineAsset.cs" />
+        <option value="$PROJECT_DIR$/Assets/material/shader/Unlit.shader" />
+        <option value="$PROJECT_DIR$/Assets/script/InstancedColor.cs" />
+        <option value="$PROJECT_DIR$/Assets/material/ShaderLibrary/Unlit.hlsl" />
         <option value="$PROJECT_DIR$/Assets/script/MyPipeline.cs" />
       </list>
     </option>
@@ -119,15 +148,15 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="FileSystemExplorer" />
+      <pane id="SolutionExplorer">
+        <option name="show-all-files" value="false" />
+      </pane>
+      <pane id="AssemblyExplorer" />
       <pane id="UnityExplorer">
         <option name="show-hidden-items" value="false" />
         <option name="show-project-names" value="true" />
       </pane>
-      <pane id="AssemblyExplorer" />
-      <pane id="SolutionExplorer">
-        <option name="show-all-files" value="false" />
-      </pane>
+      <pane id="FileSystemExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -175,11 +204,12 @@
       <workItem from="1554302927988" duration="3456000" />
       <workItem from="1554363072237" duration="4560000" />
       <workItem from="1554532956940" duration="2764000" />
+      <workItem from="1555326182060" duration="3714000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10780000" />
+    <option name="totallyTimeSpent" value="14494000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -192,8 +222,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2062" height="1136" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.121257484" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12225549" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -260,75 +291,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/material/shader/Unlit.hlsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/material/ShaderLibrary/Unlit.shader">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/material/shader/Unlit.hlsl" />
+    <entry file="file://$PROJECT_DIR$/Assets/material/ShaderLibrary/Unlit.shader" />
     <entry file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@4.10.0-preview/ShaderLibrary/Common.hlsl">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/material/ShaderLibrary/Unlit.hlsl">
+    <entry file="file://$PROJECT_DIR$/Assets/script/MyPipelineAsset.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        <state relative-caret-position="297">
+          <caret line="13" column="56" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="56" />
+          <folding>
+            <marker date="1555326412389" expanded="false" signature="6:134" ph="..." />
+            <marker date="1555326412389" expanded="true" signature="240:469" ph="{...}" />
+            <marker date="1555326412389" expanded="true" signature="398:467" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/material/shader/Unlit.shader">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        <state relative-caret-position="345">
+          <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
           <folding>
-            <marker date="1554534840664" expanded="true" signature="26:368" ph="{...}" />
-            <marker date="1554534840664" expanded="true" signature="47:105" ph="{...}" />
-            <marker date="1554534840664" expanded="true" signature="124:366" ph="{...}" />
-            <marker date="1554534840664" expanded="true" signature="147:360" ph="{...}" />
-            <marker date="1554534840664" expanded="true" signature="186:343" ph="{...}" />
+            <marker date="1555326899244" expanded="true" signature="26:473" ph="{...}" />
+            <marker date="1555326899244" expanded="true" signature="47:105" ph="{...}" />
+            <marker date="1555326899244" expanded="true" signature="124:471" ph="{...}" />
+            <marker date="1555326899244" expanded="true" signature="147:465" ph="{...}" />
+            <marker date="1555326899244" expanded="true" signature="186:448" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/script/MyPipelineAsset.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/script/InstancedColor.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="13" column="47" lean-forward="true" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+        <state relative-caret-position="46">
+          <caret line="2" column="45" lean-forward="true" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
           <folding>
-            <marker date="1554534975495" expanded="false" signature="6:134" ph="..." />
-            <marker date="1554534975495" expanded="true" signature="240:414" ph="{...}" />
-            <marker date="1554534975495" expanded="true" signature="352:412" ph="{...}" />
+            <marker date="1555333902728" expanded="true" signature="64:576" ph="{...}" />
+            <marker date="1555333902728" expanded="true" signature="279:308" ph="{...}" />
+            <marker date="1555333902728" expanded="true" signature="341:574" ph="{...}" />
+            <marker date="1555333902728" expanded="true" signature="379:448" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/material/ShaderLibrary/Unlit.hlsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/script/MyPipeline.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
+        <state relative-caret-position="551">
+          <caret line="98" column="8" lean-forward="true" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="8" />
           <folding>
-            <marker date="1554535106757" expanded="false" signature="6:150" ph="..." />
-            <marker date="1554535106757" expanded="true" signature="151:245" ph="/* ReSharper disable StringLiteralTypo ... */" />
-            <marker date="1554535106757" expanded="true" signature="263:4277" ph="{...}" />
-            <marker date="1554535106757" expanded="true" signature="310:4275" ph="{...}" />
-            <marker date="1554535106757" expanded="true" signature="422:552" ph="{...}" />
-            <marker date="1554535106757" expanded="true" signature="457:542" ph="{...}" />
-            <marker date="1554535106757" expanded="true" signature="654:841" ph="{...}" />
-            <marker date="1554535106757" expanded="true" signature="757:831" ph="{...}" />
-            <marker date="1554535106757" expanded="true" signature="954:1000" ph="{...}" />
-            <marker date="1554535106757" expanded="true" signature="1080:2951" ph="{...}" />
-            <marker date="1554535106757" expanded="true" signature="2014:2151" ph="{...}" />
-            <marker date="1554535106757" expanded="true" signature="3165:4269" ph="{...}" />
-            <marker date="1554535106757" expanded="true" signature="3216:3446" ph="{...}" />
-            <marker date="1554535106757" expanded="true" signature="3354:3431" ph="{...}" />
+            <marker date="1555335118263" expanded="false" signature="6:150" ph="..." />
+            <marker date="1555335118263" expanded="true" signature="151:245" ph="/* ReSharper disable StringLiteralTypo ... */" />
+            <marker date="1555335118263" expanded="true" signature="263:5153" ph="{...}" />
+            <marker date="1555335118263" expanded="true" signature="310:5151" ph="{...}" />
+            <marker date="1555335118263" expanded="true" signature="534:580" ph="{...}" />
+            <marker date="1555335118263" expanded="false" signature="656:949" ph="{...}" />
+            <marker date="1555335118263" expanded="true" signature="717:802" ph="{...}" />
+            <marker date="1555335118263" expanded="true" signature="858:939" ph="{...}" />
+            <marker date="1555335118263" expanded="false" signature="1051:1238" ph="{...}" />
+            <marker date="1555335118263" expanded="true" signature="1154:1228" ph="{...}" />
+            <marker date="1555335118263" expanded="true" signature="1318:3878" ph="{...}" />
+            <marker date="1555335118263" expanded="true" signature="2425:2551" ph="/* ================== draw  ============================= ... */" />
+            <marker date="1555335118263" expanded="true" signature="2675:2812" ph="{...}" />
+            <marker date="1555335118263" expanded="true" signature="2914:2988" ph="{...}" />
+            <marker date="1555335118263" expanded="false" signature="4041:5145" ph="{...}" />
+            <marker date="1555335118263" expanded="true" signature="4092:4322" ph="{...}" />
+            <marker date="1555335118263" expanded="true" signature="4230:4307" ph="{...}" />
           </folding>
         </state>
       </provider>

@@ -26,6 +26,7 @@
           </e>
         </e>
         <e p="script" t="Include">
+          <e p="InstancedColor.cs" t="Include" />
           <e p="MyPipeline.cs" t="Include" />
           <e p="MyPipelineAsset.cs" t="Include" />
         </e>
