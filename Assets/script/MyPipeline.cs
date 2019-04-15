@@ -45,9 +45,10 @@ namespace script
         #if UNITY_EDITOR
             if(camera.cameraType == CameraType.SceneView)
                 ScriptableRenderContext.EmitWorldGeometryForSceneView(camera);
-        #endif   
+        #endif 
+            
             // 剔除 
-            CullResults.Cull(ref cullparamet, context,ref _cull);
+            CullResults.Cull(ref cullparamet, context , ref _cull);
             context.SetupCameraProperties(camera);
             
             

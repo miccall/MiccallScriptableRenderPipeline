@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7845b830-371b-4af3-93fe-df4e245c7863" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/material/MyUnlit.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/material/MyUnlit.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/material/ShaderLibrary/Unlit.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/material/ShaderLibrary/Unlit.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/material/shader/Unlit.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/material/shader/Unlit.shader" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/script/MyPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/script/MyPipeline.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/script/MyPipelineAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/script/MyPipelineAsset.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/script/my pipline.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/script/my pipline.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,26 +15,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/script/MyPipeline.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="98" column="8" lean-forward="true" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="8" />
+            <state relative-caret-position="377">
+              <caret line="64" column="37" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="37" />
               <folding>
-                <marker date="1555335118263" expanded="false" signature="6:150" ph="..." />
-                <marker date="1555335118263" expanded="true" signature="151:245" ph="/* ReSharper disable StringLiteralTypo ... */" />
-                <marker date="1555335118263" expanded="true" signature="263:5153" ph="{...}" />
-                <marker date="1555335118263" expanded="true" signature="310:5151" ph="{...}" />
-                <marker date="1555335118263" expanded="true" signature="534:580" ph="{...}" />
-                <marker date="1555335118263" expanded="false" signature="656:949" ph="{...}" />
-                <marker date="1555335118263" expanded="true" signature="717:802" ph="{...}" />
-                <marker date="1555335118263" expanded="true" signature="858:939" ph="{...}" />
-                <marker date="1555335118263" expanded="false" signature="1051:1238" ph="{...}" />
-                <marker date="1555335118263" expanded="true" signature="1154:1228" ph="{...}" />
-                <marker date="1555335118263" expanded="true" signature="1318:3878" ph="{...}" />
-                <marker date="1555335118263" expanded="true" signature="2425:2551" ph="/* ================== draw  ============================= ... */" />
-                <marker date="1555335118263" expanded="true" signature="2675:2812" ph="{...}" />
-                <marker date="1555335118263" expanded="true" signature="2914:2988" ph="{...}" />
-                <marker date="1555335118263" expanded="false" signature="4041:5145" ph="{...}" />
-                <marker date="1555335118263" expanded="true" signature="4092:4322" ph="{...}" />
-                <marker date="1555335118263" expanded="true" signature="4230:4307" ph="{...}" />
+                <marker date="1555337552338" expanded="false" signature="6:150" ph="..." />
+                <marker date="1555337552338" expanded="true" signature="151:245" ph="/* ReSharper disable StringLiteralTypo ... */" />
+                <marker date="1555337552338" expanded="true" signature="263:5118" ph="{...}" />
+                <marker date="1555337552338" expanded="true" signature="310:5116" ph="{...}" />
+                <marker date="1555337552338" expanded="true" signature="525:571" ph="{...}" />
+                <marker date="1555337552338" expanded="false" signature="647:940" ph="{...}" />
+                <marker date="1555337552338" expanded="true" signature="708:793" ph="{...}" />
+                <marker date="1555337552338" expanded="true" signature="849:930" ph="{...}" />
+                <marker date="1555337552338" expanded="true" signature="1042:1229" ph="{...}" />
+                <marker date="1555337552338" expanded="true" signature="1145:1219" ph="{...}" />
+                <marker date="1555337552338" expanded="true" signature="1309:3856" ph="{...}" />
+                <marker date="1555337552338" expanded="true" signature="2403:2529" ph="/* ================== draw  ============================= ... */" />
+                <marker date="1555337552338" expanded="true" signature="2653:2790" ph="{...}" />
+                <marker date="1555337552338" expanded="true" signature="2892:2966" ph="{...}" />
+                <marker date="1555337552338" expanded="false" signature="4019:5110" ph="{...}" />
+                <marker date="1555337552338" expanded="true" signature="4070:4300" ph="{...}" />
+                <marker date="1555337552338" expanded="true" signature="4208:4285" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -121,6 +113,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/script/MyPipeline.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/material/shader/Unlit.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D616BE05-755D-41A0-8981-0B5C14E4DD50/e7/ea581087/SortFlags.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D616BE05-755D-41A0-8981-0B5C14E4DD50/be/a6dbee1d/CullResults.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -163,7 +156,7 @@
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
+    <property name="settings.editor.selected.configurable" value="CodeLensConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -204,12 +197,12 @@
       <workItem from="1554302927988" duration="3456000" />
       <workItem from="1554363072237" duration="4560000" />
       <workItem from="1554532956940" duration="2764000" />
-      <workItem from="1555326182060" duration="3714000" />
+      <workItem from="1555326182060" duration="8328000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14494000" />
+    <option name="totallyTimeSpent" value="19108000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -342,28 +335,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D616BE05-755D-41A0-8981-0B5C14E4DD50/be/a6dbee1d/CullResults.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/script/MyPipeline.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="98" column="8" lean-forward="true" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="8" />
+        <state relative-caret-position="377">
+          <caret line="64" column="37" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="37" />
           <folding>
-            <marker date="1555335118263" expanded="false" signature="6:150" ph="..." />
-            <marker date="1555335118263" expanded="true" signature="151:245" ph="/* ReSharper disable StringLiteralTypo ... */" />
-            <marker date="1555335118263" expanded="true" signature="263:5153" ph="{...}" />
-            <marker date="1555335118263" expanded="true" signature="310:5151" ph="{...}" />
-            <marker date="1555335118263" expanded="true" signature="534:580" ph="{...}" />
-            <marker date="1555335118263" expanded="false" signature="656:949" ph="{...}" />
-            <marker date="1555335118263" expanded="true" signature="717:802" ph="{...}" />
-            <marker date="1555335118263" expanded="true" signature="858:939" ph="{...}" />
-            <marker date="1555335118263" expanded="false" signature="1051:1238" ph="{...}" />
-            <marker date="1555335118263" expanded="true" signature="1154:1228" ph="{...}" />
-            <marker date="1555335118263" expanded="true" signature="1318:3878" ph="{...}" />
-            <marker date="1555335118263" expanded="true" signature="2425:2551" ph="/* ================== draw  ============================= ... */" />
-            <marker date="1555335118263" expanded="true" signature="2675:2812" ph="{...}" />
-            <marker date="1555335118263" expanded="true" signature="2914:2988" ph="{...}" />
-            <marker date="1555335118263" expanded="false" signature="4041:5145" ph="{...}" />
-            <marker date="1555335118263" expanded="true" signature="4092:4322" ph="{...}" />
-            <marker date="1555335118263" expanded="true" signature="4230:4307" ph="{...}" />
+            <marker date="1555337552338" expanded="false" signature="6:150" ph="..." />
+            <marker date="1555337552338" expanded="true" signature="151:245" ph="/* ReSharper disable StringLiteralTypo ... */" />
+            <marker date="1555337552338" expanded="true" signature="263:5118" ph="{...}" />
+            <marker date="1555337552338" expanded="true" signature="310:5116" ph="{...}" />
+            <marker date="1555337552338" expanded="true" signature="525:571" ph="{...}" />
+            <marker date="1555337552338" expanded="false" signature="647:940" ph="{...}" />
+            <marker date="1555337552338" expanded="true" signature="708:793" ph="{...}" />
+            <marker date="1555337552338" expanded="true" signature="849:930" ph="{...}" />
+            <marker date="1555337552338" expanded="true" signature="1042:1229" ph="{...}" />
+            <marker date="1555337552338" expanded="true" signature="1145:1219" ph="{...}" />
+            <marker date="1555337552338" expanded="true" signature="1309:3856" ph="{...}" />
+            <marker date="1555337552338" expanded="true" signature="2403:2529" ph="/* ================== draw  ============================= ... */" />
+            <marker date="1555337552338" expanded="true" signature="2653:2790" ph="{...}" />
+            <marker date="1555337552338" expanded="true" signature="2892:2966" ph="{...}" />
+            <marker date="1555337552338" expanded="false" signature="4019:5110" ph="{...}" />
+            <marker date="1555337552338" expanded="true" signature="4070:4300" ph="{...}" />
+            <marker date="1555337552338" expanded="true" signature="4208:4285" ph="{...}" />
           </folding>
         </state>
       </provider>
