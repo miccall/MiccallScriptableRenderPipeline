@@ -3,6 +3,7 @@ using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using Conditional = System.Diagnostics.ConditionalAttribute;
 // ReSharper disable StringLiteralTypo
+// ReSharper disable InconsistentNaming
 
 // ReSharper disable BitwiseOperatorOnEnumWithoutFlags
 
@@ -16,8 +17,17 @@ namespace script
         private  readonly CommandBuffer _cameraBuffer = new CommandBuffer {
             name = "Render Camera"
         };
+
+        private const int maxVisibleLights = 4;
+        private static readonly int visibleLightColorsId = Shader.PropertyToID("_VisibleLightColors");
+        private static readonly int visibleLightDirectionsId = Shader.PropertyToID("_VisibleLightDirections");
+	
+        Vector4[] visibleLightColors = new Vector4[maxVisibleLights];
+        Vector4[] visibleLightDirections = new Vector4[maxVisibleLights];
         
         public MyPipeline (bool dynamicBatching,bool instancing) {
+            // 使用线性空间设置 
+            GraphicsSettings.lightsUseLinearIntensity = true;
             // 开启 动态合批处理 
             if (dynamicBatching) {
                 _drawFlags = DrawRendererFlags.EnableDynamicBatching;
@@ -62,7 +72,18 @@ namespace script
                 camera.backgroundColor
             );
             
+            // 配置灯光信息 
+            ConfigureLights();
             _cameraBuffer.BeginSample("Render Camera");
+            
+            // 设置 灯光 缓冲区  
+            _cameraBuffer.SetGlobalVectorArray(
+                visibleLightColorsId, visibleLightColors
+            );
+            _cameraBuffer.SetGlobalVectorArray(
+                visibleLightDirectionsId, visibleLightDirections
+            );
+            
             context.ExecuteCommandBuffer(_cameraBuffer);
             _cameraBuffer.Clear();
             
@@ -99,6 +120,32 @@ namespace script
             context.ExecuteCommandBuffer(_cameraBuffer);
             _cameraBuffer.Clear();
             context.Submit();
+        }
+
+        private void ConfigureLights()
+        {
+            // 遍历可见灯光 
+            var i = 0 ;
+            for (; i < _cull.visibleLights.Count; i++) {
+                if (i == maxVisibleLights) {
+                    break;
+                }
+                
+                var light = _cull.visibleLights[i];
+                //finalColor ： 灯光的颜色乘以其强度
+                visibleLightColors[i] = light.finalColor;   
+                
+                // 计算灯光方向 
+                var v = light.localToWorld.GetColumn(2);
+                v.x = -v.x;
+                v.y = -v.y;
+                v.z = -v.z;
+                visibleLightDirections[i] = v;
+            }
+            for (; i < maxVisibleLights; i++) {
+                visibleLightColors[i] = Color.clear;
+            }
+            
         }
 
         [Conditional("DEVELOPMENT_BUILD"), Conditional("UNITY_EDITOR")]

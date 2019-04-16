@@ -9,9 +9,11 @@
       <e p="Assets" t="Include">
         <e p="material" t="Include">
           <e p="shader" t="Include">
+            <e p="lit.shader" t="Include" />
             <e p="unlit.shader" t="Include" />
           </e>
           <e p="ShaderLibrary" t="Include">
+            <e p="lit.hlsl" t="Include" />
             <e p="Unlit.hlsl" t="Include" />
           </e>
         </e>

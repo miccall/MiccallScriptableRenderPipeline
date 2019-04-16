@@ -15,7 +15,7 @@ CBUFFER_END
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/UnityInstancing.hlsl"
 
 UNITY_INSTANCING_BUFFER_START(PerInstance)
-	UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
+UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
 UNITY_INSTANCING_BUFFER_END(PerInstance)
 
 struct VertexInput {
@@ -37,7 +37,7 @@ VertexOutput UnlitPassVertex (VertexInput input) {
 	return output;
 }
 float4 UnlitPassFragment (VertexOutput input) : SV_TARGET {
-UNITY_SETUP_INSTANCE_ID(input);
+    UNITY_SETUP_INSTANCE_ID(input);
 	return UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color);
 }
 
