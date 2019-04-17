@@ -20,10 +20,11 @@ namespace script
 
         private const int maxVisibleLights = 4;
         private static readonly int visibleLightColorsId = Shader.PropertyToID("_VisibleLightColors");
-        private static readonly int visibleLightDirectionsId = Shader.PropertyToID("_VisibleLightDirections");
-	
+        private static readonly int visibleLightDirectionsOrPositionsId = Shader.PropertyToID("_VisibleLightDirectionsOrPositions");
+        private static readonly int visibleLightAttenuationsId = Shader.PropertyToID("_VisibleLightAttenuations");
         Vector4[] visibleLightColors = new Vector4[maxVisibleLights];
-        Vector4[] visibleLightDirections = new Vector4[maxVisibleLights];
+        Vector4[] visibleLightDirectionsOrPositions  = new Vector4[maxVisibleLights];
+        Vector4[] visibleLightAttenuations = new Vector4[maxVisibleLights];
         
         public MyPipeline (bool dynamicBatching,bool instancing) {
             // 使用线性空间设置 
@@ -81,9 +82,11 @@ namespace script
                 visibleLightColorsId, visibleLightColors
             );
             _cameraBuffer.SetGlobalVectorArray(
-                visibleLightDirectionsId, visibleLightDirections
+                visibleLightDirectionsOrPositionsId, visibleLightDirectionsOrPositions
             );
-            
+            _cameraBuffer.SetGlobalVectorArray(
+                visibleLightAttenuationsId, visibleLightAttenuations
+            );
             context.ExecuteCommandBuffer(_cameraBuffer);
             _cameraBuffer.Clear();
             
@@ -130,17 +133,26 @@ namespace script
                 if (i == maxVisibleLights) {
                     break;
                 }
-                
+                var attenuation = Vector4.zero;
                 var light = _cull.visibleLights[i];
                 //finalColor ： 灯光的颜色乘以其强度
                 visibleLightColors[i] = light.finalColor;   
                 
-                // 计算灯光方向 
-                var v = light.localToWorld.GetColumn(2);
-                v.x = -v.x;
-                v.y = -v.y;
-                v.z = -v.z;
-                visibleLightDirections[i] = v;
+                // 计算灯光方向 或者 位置 
+                if (light.lightType == LightType.Directional) {
+                    var v = light.localToWorld.GetColumn(2);
+                    v.x = -v.x;
+                    v.y = -v.y;
+                    v.z = -v.z;
+                    visibleLightDirectionsOrPositions[i] = v;
+                }
+                else {
+                    visibleLightDirectionsOrPositions[i] =
+                        light.localToWorld.GetColumn(3);
+                    attenuation.x = 1f /
+                                    Mathf.Max(light.range * light.range, 0.00001f);
+                }
+                visibleLightAttenuations[i] = attenuation;
             }
             for (; i < maxVisibleLights; i++) {
                 visibleLightColors[i] = Color.clear;
