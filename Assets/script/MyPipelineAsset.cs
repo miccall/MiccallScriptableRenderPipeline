@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using script;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
 [CreateAssetMenu(menuName = "Rendering/My Pipeline")]
