@@ -14,6 +14,7 @@
           </e>
           <e p="ShaderLibrary" t="Include">
             <e p="lit.hlsl" t="Include" />
+            <e p="ShadowCaster.hlsl" t="Include" />
             <e p="Unlit.hlsl" t="Include" />
           </e>
         </e>
