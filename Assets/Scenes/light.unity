@@ -642,8 +642,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224248257}
-  m_LocalRotation: {x: -0.24811593, y: 0.41155505, z: -0.11749148, w: -0.86905515}
-  m_LocalPosition: {x: 1.8154817, y: 0.2293992, z: -15.189783}
+  m_LocalRotation: {x: 0.21415985, y: -0.44844234, z: 0.11159303, w: 0.8605708}
+  m_LocalPosition: {x: 2.207737, y: -0.0040826797, z: -13.491165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1952,18 +1952,18 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 200
-  m_Range: 65.77
-  m_SpotAngle: 113.14901
+  m_Intensity: 281.9
+  m_Range: 106.99526
+  m_SpotAngle: 129.01657
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: 3
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.01
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NormalBias: 0.05
+    m_NearPlane: 0.1
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
@@ -1986,13 +1986,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547899941}
-  m_LocalRotation: {x: 0.6356658, y: -0.30972415, z: -0.30972424, w: 0.6356657}
-  m_LocalPosition: {x: 0.78, y: 2.9, z: -10.09}
+  m_LocalRotation: {x: 0.60583675, y: -0.36463913, z: -0.36463934, w: 0.60583687}
+  m_LocalPosition: {x: 2.68, y: 1.28, z: -10.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 38.045002, y: -90.00001, z: -90.00001}
+  m_LocalEulerAnglesHint: {x: 27.914001, y: -90.00001, z: -90.00001}
 --- !u!1 &578575227
 GameObject:
   m_ObjectHideFlags: 0
@@ -5026,7 +5026,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665782909}
   m_LocalRotation: {x: 0.16136736, y: 0.83150566, z: -0.31156057, w: -0.43068445}
-  m_LocalPosition: {x: 3.1522083, y: 1.5343113, z: 15.434945}
+  m_LocalPosition: {x: 3.19, y: 1.5, z: 15.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1568016882}

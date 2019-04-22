@@ -90,12 +90,23 @@ public class MyPipeline : RenderPipeline
 
         // 剔除 
         CullResults.Cull(ref cullparamet, context, ref _cull);
-        // 设置阴影贴图 
-        RenderShadows(context);
+
+
+
+        // 配置灯光信息 
+        if (_cull.visibleLights.Count > 0)
+        {
+            ConfigureLights();
+            // 设置阴影贴图 
+            RenderShadows(context);
+        }
+        else
+            CameraBuffer.SetGlobalVector(lightIndicesOffsetAndCountID, Vector4.zero);
+        //ConfigureLights();
+
         // 更新相机信息
         context.SetupCameraProperties(camera);
-
-
+        
         // ==================   clear   ========================== 
 
         var clearFlags = camera.clearFlags;
@@ -105,11 +116,6 @@ public class MyPipeline : RenderPipeline
             (clearFlags & CameraClearFlags.Color) != 0,
             camera.backgroundColor
         );
-
-        // 配置灯光信息 
-        if (_cull.visibleLights.Count > 0) ConfigureLights();
-        
-        else CameraBuffer.SetGlobalVector(lightIndicesOffsetAndCountID, Vector4.zero);
 
         CameraBuffer.BeginSample("Render Camera");
 
@@ -196,6 +202,7 @@ public class MyPipeline : RenderPipeline
             // 衰减值 
             var attenuation = Vector4.zero;
             attenuation.w = 1f;
+            var shadow = Vector4.zero;
 
             // 平行光 ： 计算灯光方向 ，位置无关 
             if (light.lightType == LightType.Directional)
@@ -228,10 +235,20 @@ public class MyPipeline : RenderPipeline
                     var angleRange = Mathf.Max(innerCos - outerCos, 0.001f);
                     attenuation.z = 1f / angleRange;
                     attenuation.w = -outerCos * attenuation.z;
+                    // 添加阴影 
+                    var shadowLight = light.light;
+                    Bounds shadowBounds;
+                    if (shadowLight.shadows != LightShadows.None &&
+                        _cull.GetShadowCasterBounds(i, out shadowBounds )) {
+                        shadow.x = shadowLight.shadowStrength;
+                        shadow.y =
+                            shadowLight.shadows == LightShadows.Soft ? 1f : 0f;
+                    }
                 }
             }
 
             visibleLightAttenuations[i] = attenuation;
+            shadowData[i] = shadow;
         }
 
         if (_cull.visibleLights.Count <= maxVisibleLights) return;
@@ -280,22 +297,6 @@ public class MyPipeline : RenderPipeline
     private void RenderShadows (ScriptableRenderContext context) {
         const bool hardShadows = false;
         const bool softShadows = true;
-        int split;
-        if (shadowTileCount <= 1) {
-            split = 1;
-        }
-        else if (shadowTileCount <= 4) {
-            split = 2;
-        }
-        else if (shadowTileCount <= 9) {
-            split = 3;
-        }
-        else {
-            split = 4;
-        }
-        var tileSize = shadowMapSize / split;
-        var tileScale = 1f / split;
-        var tileViewport = new Rect(0f, 0f, tileSize, tileSize);
         
         // 生成一张阴影贴图 
         shadowMap = RenderTexture.GetTemporary(
@@ -314,6 +315,12 @@ public class MyPipeline : RenderPipeline
         context.ExecuteCommandBuffer(ShadowBuffer);
         ShadowBuffer.Clear();
 
+        // 遍历所有的灯
+        for (var i = 0; i < _cull.visibleLights.Count; i++)
+        {
+            
+            
+        }
         // V P 矩阵 viewMatrix and projectionMatrix
         _cull.ComputeSpotShadowMatricesAndCullingPrimitives(
             0, out var viewMatrix, out var projectionMatrix, out var splitData
@@ -351,11 +358,7 @@ public class MyPipeline : RenderPipeline
         
         // 软阴影
         var invShadowMapSize = 1f / shadowMapSize;
-        ShadowBuffer.SetGlobalVector(
-            shadowMapSizeId, new Vector4(
-                invShadowMapSize, invShadowMapSize, shadowMapSize, shadowMapSize
-            )
-        );
+        ShadowBuffer.SetGlobalVector(shadowMapSizeId, new Vector4(invShadowMapSize, invShadowMapSize, shadowMapSize, shadowMapSize));
         
         // 启用软阴影 关键字 
         CoreUtils.SetKeyword(ShadowBuffer, shadowsHardKeyword, hardShadows);
