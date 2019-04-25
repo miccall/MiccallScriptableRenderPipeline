@@ -23,9 +23,8 @@ public class MyPipeline : RenderPipeline
     private static int visibleLightSpotDirectionsId = Shader.PropertyToID("_VisibleLightSpotDirections");
     private static int lightIndicesOffsetAndCountID = Shader.PropertyToID("unity_LightIndicesOffsetAndCount");
     private static int shadowMapId = Shader.PropertyToID("_ShadowMap");
-    private static int worldToShadowMatrixId = Shader.PropertyToID("_WorldToShadowMatrix");
+    private static int worldToShadowMatricesId = Shader.PropertyToID("_WorldToShadowMatrices");
     private static int shadowBiasId = Shader.PropertyToID("_ShadowBias");
-    private static int shadowStrengthId = Shader.PropertyToID("_ShadowStrength");
     private static int shadowMapSizeId = Shader.PropertyToID("_ShadowMapSize");
     private static int shadowDataId = Shader.PropertyToID("_ShadowData");
     
@@ -102,7 +101,7 @@ public class MyPipeline : RenderPipeline
         }
         else
             CameraBuffer.SetGlobalVector(lightIndicesOffsetAndCountID, Vector4.zero);
-        //ConfigureLights();
+        ConfigureLights();
 
         // 更新相机信息
         context.SetupCameraProperties(camera);
@@ -318,42 +317,50 @@ public class MyPipeline : RenderPipeline
         // 遍历所有的灯
         for (var i = 0; i < _cull.visibleLights.Count; i++)
         {
+            if (i == maxVisibleLights) break;
+            if (shadowData[i].x <= 0f) continue;
+            
+            // V P 矩阵 viewMatrix and projectionMatrix
+            if (!_cull.ComputeSpotShadowMatricesAndCullingPrimitives(
+                i, out var viewMatrix, out var projectionMatrix, out var splitData
+            )) {
+                //如果失败则跳过灯
+                shadowData[i].x = 0f;
+                continue;
+            }
             
             
+            // 计算矩阵 
+            ShadowBuffer.SetViewProjectionMatrices(viewMatrix, projectionMatrix);
+            ShadowBuffer.SetGlobalFloat(shadowBiasId, _cull.visibleLights[i].light.shadowBias);
+            context.ExecuteCommandBuffer(ShadowBuffer);
+            ShadowBuffer.Clear();
+            
+            //阴影设置
+            var shadowSettings = new DrawShadowsSettings(_cull, i);
+            context.DrawShadows(ref shadowSettings);
+        
+            // 是否反转矩阵 
+            if (SystemInfo.usesReversedZBuffer) {
+                projectionMatrix.m20 = -projectionMatrix.m20;
+                projectionMatrix.m21 = -projectionMatrix.m21;
+                projectionMatrix.m22 = -projectionMatrix.m22;
+                projectionMatrix.m23 = -projectionMatrix.m23;
+            }
+        
+            // 从世界空间到阴影剪辑空间的转换矩阵 并且 ： 从 -1 1 到 0 1
+            var scaleOffset = Matrix4x4.identity;
+            scaleOffset.m00 = scaleOffset.m11 = scaleOffset.m22 = 0.5f;
+            scaleOffset.m03 = scaleOffset.m13 = scaleOffset.m23 = 0.5f;
+            worldToShadowMatrices[i] = scaleOffset * (projectionMatrix * viewMatrix);
+        
+            // 设置 buffer 到 shader 
+            ShadowBuffer.SetGlobalTexture(shadowMapId, shadowMap);
+            ShadowBuffer.SetGlobalMatrixArray(worldToShadowMatricesId, worldToShadowMatrices);
+            ShadowBuffer.SetGlobalVectorArray(shadowDataId, shadowData);
+            
         }
-        // V P 矩阵 viewMatrix and projectionMatrix
-        _cull.ComputeSpotShadowMatricesAndCullingPrimitives(
-            0, out var viewMatrix, out var projectionMatrix, out var splitData
-        );
-        
-        // 计算矩阵 
-        ShadowBuffer.SetViewProjectionMatrices(viewMatrix, projectionMatrix);
-        ShadowBuffer.SetGlobalFloat(shadowBiasId, _cull.visibleLights[0].light.shadowBias);
-        context.ExecuteCommandBuffer(ShadowBuffer);
-        ShadowBuffer.Clear();
-        
-        //阴影设置
-        var shadowSettings = new DrawShadowsSettings(_cull, 0);
-        context.DrawShadows(ref shadowSettings);
-        
-        // 是否反转矩阵 
-        if (SystemInfo.usesReversedZBuffer) {
-            projectionMatrix.m20 = -projectionMatrix.m20;
-            projectionMatrix.m21 = -projectionMatrix.m21;
-            projectionMatrix.m22 = -projectionMatrix.m22;
-            projectionMatrix.m23 = -projectionMatrix.m23;
-        }
-        
-        // 从世界空间到阴影剪辑空间的转换矩阵 并且 ： 从 -1 1 到 0 1
-        var scaleOffset = Matrix4x4.identity;
-        scaleOffset.m00 = scaleOffset.m11 = scaleOffset.m22 = 0.5f;
-        scaleOffset.m03 = scaleOffset.m13 = scaleOffset.m23 = 0.5f;
-        var worldToShadowMatrix = scaleOffset * (projectionMatrix * viewMatrix);
-        
-        // 设置 buffer 到 shader 
-        ShadowBuffer.SetGlobalMatrix(worldToShadowMatrixId, worldToShadowMatrix);
-        ShadowBuffer.SetGlobalTexture(shadowMapId, shadowMap);
-        ShadowBuffer.SetGlobalFloat(shadowStrengthId, _cull.visibleLights[0].light.shadowStrength);
+
         
         
         // 软阴影
