@@ -34,20 +34,23 @@ CBUFFER_END
 TEXTURE2D_SHADOW(_ShadowMap);
 SAMPLER_CMP(sampler_ShadowMap);
 
+// 索引 ，检索正确的数组元素
 float ShadowAttenuation (int index , float3 worldPos) {
 	
-	if (_ShadowData[index].x <= 0) {
-		// no light 
-		return 1.0;
-	}
+	// 阴影强度是否为正
+	if ( _ShadowData[index].x <= 0) return 1.0;
 	
 	float4 shadowPos = mul(_WorldToShadowMatrices[index], float4(worldPos, 1.0));
 	shadowPos.xyz /= shadowPos.w;
+	
 	float attenuation;
+	// y分量记录了 hard 和 sorf shadow 
 	if (_ShadowData[index].y == 0) {
+	    // hard shadow:
 		attenuation = SAMPLE_TEXTURE2D_SHADOW(_ShadowMap, sampler_ShadowMap, shadowPos.xyz);
 	}
 	else{
+	    // soft shadow:
         real tentWeights[9];
         real2 tentUVs[9];
         SampleShadow_ComputeSamples_Tent_5x5(
