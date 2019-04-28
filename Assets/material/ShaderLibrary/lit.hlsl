@@ -24,8 +24,6 @@ CBUFFER_START(_LightBuffer)
 CBUFFER_END
 
 CBUFFER_START(_ShadowBuffer)
-    //float4x4 _WorldToShadowMatrix;
-    //float    _ShadowStrength;
     float4x4 _WorldToShadowMatrices[MAX_VISIBLE_LIGHTS];
 	float4 _ShadowData[MAX_VISIBLE_LIGHTS];
     float4   _ShadowMapSize;
@@ -34,9 +32,29 @@ CBUFFER_END
 TEXTURE2D_SHADOW(_ShadowMap);
 SAMPLER_CMP(sampler_ShadowMap);
 
+
+float HardShadowAttenuation (float4 shadowPos) {
+	return SAMPLE_TEXTURE2D_SHADOW(_ShadowMap, sampler_ShadowMap, shadowPos.xyz);
+}
+float SoftShadowAttenuation (float4 shadowPos) {
+        real tentWeights[9];
+        real2 tentUVs[9];
+        SampleShadow_ComputeSamples_Tent_5x5(
+            _ShadowMapSize, shadowPos.xy, tentWeights, tentUVs
+        );
+        float attenuation = 0;
+        for (int i = 0; i < 9; i++) {
+            attenuation += tentWeights[i] * SAMPLE_TEXTURE2D_SHADOW(
+                _ShadowMap, sampler_ShadowMap, float3(tentUVs[i].xy, shadowPos.z)
+            );
+        }	
+        return attenuation;
+}
 // 索引 ，检索正确的数组元素
 float ShadowAttenuation (int index , float3 worldPos) {
-	
+	#if !defined(_SHADOWS_HARD) && !defined(_SHADOWS_SOFT)
+		return 1.0;
+	#endif
 	// 阴影强度是否为正
 	if ( _ShadowData[index].x <= 0) return 1.0;
 	
@@ -44,25 +62,24 @@ float ShadowAttenuation (int index , float3 worldPos) {
 	shadowPos.xyz /= shadowPos.w;
 	
 	float attenuation;
-	// y分量记录了 hard 和 sorf shadow 
-	if (_ShadowData[index].y == 0) {
-	    // hard shadow:
-		attenuation = SAMPLE_TEXTURE2D_SHADOW(_ShadowMap, sampler_ShadowMap, shadowPos.xyz);
-	}
-	else{
-	    // soft shadow:
-        real tentWeights[9];
-        real2 tentUVs[9];
-        SampleShadow_ComputeSamples_Tent_5x5(
-            _ShadowMapSize, shadowPos.xy, tentWeights, tentUVs
-        );
-        attenuation = 0;
-        for (int i = 0; i < 9; i++) {
-            attenuation += tentWeights[i] * SAMPLE_TEXTURE2D_SHADOW(
-                _ShadowMap, sampler_ShadowMap, float3(tentUVs[i].xy, shadowPos.z)
-            );
-        }	
-	}
+	
+	#if defined(_SHADOWS_HARD)
+		#if defined(_SHADOWS_SOFT)
+            // y分量记录了 hard 和 sorf shadow 
+            if (_ShadowData[index].y == 0) {
+                attenuation = HardShadowAttenuation(shadowPos);
+            }
+            else{
+                attenuation = SoftShadowAttenuation(shadowPos);
+            }
+		#else
+			attenuation = HardShadowAttenuation(shadowPos);
+		#endif
+	#else
+		attenuation = SoftShadowAttenuation(shadowPos);
+	#endif
+	
+	
 	return lerp(1, attenuation, _ShadowData[index].x );
 }
 

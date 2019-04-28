@@ -46,3 +46,9 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+#idea
+.idea/.idea.MiccallScriptableRenderPipeline/
+.iml
+.idea/.idea.MiccallScriptableRenderPipeline/.idea/
+.xml

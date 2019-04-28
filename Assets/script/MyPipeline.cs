@@ -91,21 +91,25 @@ public class MyPipeline : RenderPipeline
         // 剔除 
         CullResults.Cull(ref cullparamet, context, ref _cull);
 
-
-
         // 配置灯光信息 
         if (_cull.visibleLights.Count > 0)
         {
             ConfigureLights();
-            // 设置阴影贴图 
-            RenderShadows(context);
+            if (shadowTileCount > 0) {
+                // 设置阴影贴图 
+                RenderShadows(context);
+            }
+            else {
+                CameraBuffer.DisableShaderKeyword(shadowsHardKeyword);
+                CameraBuffer.DisableShaderKeyword(shadowsSoftKeyword);
+            }
         }
         else
         {
             CameraBuffer.SetGlobalVector(lightIndicesOffsetAndCountID, Vector4.zero);
+            CameraBuffer.DisableShaderKeyword(shadowsHardKeyword);
+            CameraBuffer.DisableShaderKeyword(shadowsSoftKeyword);
         }
-
-        ConfigureLights();
 
         // 更新相机信息
         context.SetupCameraProperties(camera);
@@ -255,14 +259,13 @@ public class MyPipeline : RenderPipeline
             shadowData[i] = shadow;
         }
 
-        if (_cull.visibleLights.Count <= maxVisibleLights) return;
+        if (_cull.visibleLights.Count > maxVisibleLights)
         {
             var lightIndices = _cull.GetLightIndexMap();
             for (var i = maxVisibleLights; i < _cull.visibleLights.Count; i++)
             {
                 lightIndices[i] = -1;
             }
-
             _cull.SetLightIndexMap(lightIndices);
         }
     }
@@ -302,6 +305,9 @@ public class MyPipeline : RenderPipeline
         
         //动态平铺参数 
         var tileIndex = 0;
+        var hardShadows = false;
+        var softShadows = false;
+        
         int split;
         if (shadowTileCount <= 1) {
             split = 1;
@@ -316,15 +322,11 @@ public class MyPipeline : RenderPipeline
             split = 4;
         }
         
-        const bool hardShadows = false;
-        const bool softShadows = true;
-        
         // 使用 4x4的贴图来存放支持16盏灯的阴影贴图缩放
         var tileSize = shadowMapSize / split;
         var tileScale = 1f / split;
         var tileViewport = new Rect(0f, 0f, tileSize, tileSize);
 
-        
         // 生成一张阴影贴图 
         shadowMap = RenderTexture.GetTemporary(
             shadowMapSize, shadowMapSize, 16, RenderTextureFormat.Shadowmap
@@ -358,7 +360,6 @@ public class MyPipeline : RenderPipeline
                 shadowData[i].x = 0f;
                 continue;
             }
-            
             
             // 视口 offset 来偏移阴影贴图的存放位置 
             float tileOffsetX = tileIndex % split ;
@@ -414,16 +415,23 @@ public class MyPipeline : RenderPipeline
                 worldToShadowMatrices[i] = tileMatrix * worldToShadowMatrices[i];
             }
 
-            // 设置 buffer 到 shader 
-            ShadowBuffer.SetGlobalTexture(shadowMapId, shadowMap);
-            ShadowBuffer.SetGlobalMatrixArray(worldToShadowMatricesId, worldToShadowMatrices);
-            ShadowBuffer.SetGlobalVectorArray(shadowDataId, shadowData);
             tileIndex += 1;
+            if (shadowData[i].y <= 0f) {
+                hardShadows = true;
+            }
+            else {
+                softShadows = true;
+            }
+            
         }
         
         // 关闭裁切
         if (split > 1) ShadowBuffer.DisableScissorRect();
         
+        // 设置 buffer 到 shader 
+        ShadowBuffer.SetGlobalTexture(shadowMapId, shadowMap);
+        ShadowBuffer.SetGlobalMatrixArray(worldToShadowMatricesId, worldToShadowMatrices);
+        ShadowBuffer.SetGlobalVectorArray(shadowDataId, shadowData);
         
         // 软阴影
         var invShadowMapSize = 1f / shadowMapSize;
