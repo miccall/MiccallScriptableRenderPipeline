@@ -71,10 +71,15 @@ public class MyPipeline : RenderPipeline
     // ======================= render ============================== 
     public override void Render(ScriptableRenderContext renderContext, Camera[] cameras)
     {
+        BeginFrameRendering(cameras);
+        // 是否使用的是线性空间 
+        GraphicsSettings.lightsUseLinearIntensity = (QualitySettings.activeColorSpace == ColorSpace.Linear);
         base.Render(renderContext, cameras);
         foreach (var camera in cameras)
         {
+            BeginCameraRendering(camera);
             Render(renderContext, camera);
+            
         }
     }
 
@@ -444,6 +449,5 @@ public class MyPipeline : RenderPipeline
         ShadowBuffer.EndSample("Render Shadows");
         context.ExecuteCommandBuffer(ShadowBuffer);
         ShadowBuffer.Clear();
-        
     }
 }
