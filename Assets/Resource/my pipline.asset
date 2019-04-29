@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: my pipline
   m_EditorClassIdentifier: 
   shadowMapSize: 4096
-  dynamicBatching: 1
+  dynamicBatching: 0
   instancing: 1
+  shadowDistance: 33.7

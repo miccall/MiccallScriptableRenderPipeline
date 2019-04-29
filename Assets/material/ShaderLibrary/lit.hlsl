@@ -8,6 +8,10 @@ CBUFFER_START(UnityPerFrame)
 	float4x4 unity_MatrixVP;
 CBUFFER_END
 
+CBUFFER_START(UnityPerCamera)
+	float3 _WorldSpaceCameraPos;
+CBUFFER_END
+
 CBUFFER_START(UnityPerDraw)
 	float4x4 unity_ObjectToWorld;
 	float4 unity_LightIndicesOffsetAndCount;
@@ -27,10 +31,17 @@ CBUFFER_START(_ShadowBuffer)
     float4x4 _WorldToShadowMatrices[MAX_VISIBLE_LIGHTS];
 	float4 _ShadowData[MAX_VISIBLE_LIGHTS];
     float4   _ShadowMapSize;
+    float4 _GlobalShadowData;
 CBUFFER_END
 
 TEXTURE2D_SHADOW(_ShadowMap);
 SAMPLER_CMP(sampler_ShadowMap);
+
+//利用世界位置 返回相机的平方距离
+float DistanceToCameraSqr (float3 worldPos) {
+	float3 cameraToFragment = worldPos - _WorldSpaceCameraPos;
+	return dot(cameraToFragment, cameraToFragment);
+}
 
 
 float HardShadowAttenuation (float4 shadowPos) {
@@ -55,11 +66,14 @@ float ShadowAttenuation (int index , float3 worldPos) {
 	#if !defined(_SHADOWS_HARD) && !defined(_SHADOWS_SOFT)
 		return 1.0;
 	#endif
-	// 阴影强度是否为正
-	if ( _ShadowData[index].x <= 0) return 1.0;
+	// 阴影强度是否为正  或者 距离太大 
+	if ( _ShadowData[index].x <= 0 ||
+		DistanceToCameraSqr(worldPos) > _GlobalShadowData.y ) return 1.0;
 	
 	float4 shadowPos = mul(_WorldToShadowMatrices[index], float4(worldPos, 1.0));
 	shadowPos.xyz /= shadowPos.w;
+	shadowPos.xy = saturate(shadowPos.xy);
+	shadowPos.xy = shadowPos.xy * _GlobalShadowData.x + _ShadowData[index].zw;
 	
 	float attenuation;
 	
@@ -92,7 +106,7 @@ float3 DiffuseLight (int index, float3 normal, float3 worldPos, float shadowAtte
 	float3 lightVector =
 		lightPositionOrDirection.xyz - worldPos * lightPositionOrDirection.w;
 	float3 lightDirection = normalize(lightVector);
-	float diffuse = saturate(dot(normal, lightDirection));
+	float diffuse = saturate(dot(normal, lightDirection)); 
 	
 	float rangeFade = dot(lightVector, lightVector) * lightAttenuation.x;
 	rangeFade = saturate(1.0 - rangeFade * rangeFade);
@@ -105,7 +119,7 @@ float3 DiffuseLight (int index, float3 normal, float3 worldPos, float shadowAtte
 	float distanceSqr = max(dot(lightVector, lightVector), 0.00001);
 	diffuse *= shadowAttenuation * spotFade * rangeFade / distanceSqr;
 	
-	return diffuse * lightColor;
+	return diffuse * lightColor  ;
 }
 
 #define UNITY_MATRIX_M unity_ObjectToWorld
