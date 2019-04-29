@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaff20788b153e74c8a14316d8fef171, type: 3}
   m_Name: my pipline
   m_EditorClassIdentifier: 
+  shadowCascades: 4
   shadowMapSize: 4096
   dynamicBatching: 0
   instancing: 1
   shadowDistance: 33.7
+  twoCascadesSplit: 0.25
+  fourCascadesSplit: {x: 0.0934151, y: 0.2603774, z: 0.46700007}

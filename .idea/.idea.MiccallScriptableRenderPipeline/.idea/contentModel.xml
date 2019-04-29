@@ -5,8 +5,12 @@
     <e p="C:\Users\miccall\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_MiccallScriptableRenderPipeline.487991386.00" t="ExcludeRecursive" />
     <e p="E:\unity2019\MiccallScriptableRenderPipeline" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Editor" t="Include">
+          <e p="MyPipelineAssetEditor.cs" t="Include" />
+        </e>
         <e p="material" t="Include">
           <e p="shader" t="Include">
             <e p="lit.shader" t="Include" />

@@ -29,7 +29,8 @@ public class MyPipeline : RenderPipeline
     private static int shadowMapSizeId = Shader.PropertyToID("_ShadowMapSize");
     private static int shadowDataId = Shader.PropertyToID("_ShadowData");
     private static int globalShadowDataId = Shader.PropertyToID("_GlobalShadowData");
-    
+    private static int cascadedShadowMapId = Shader.PropertyToID("_CascadedShadowMap");
+   
     private Vector4[] visibleLightColors = new Vector4[maxVisibleLights];
     private Vector4[] visibleLightDirectionsOrPositions = new Vector4[maxVisibleLights];
     private Vector4[] visibleLightAttenuations = new Vector4[maxVisibleLights];
@@ -41,7 +42,7 @@ public class MyPipeline : RenderPipeline
     private Material _errorMaterial;
     
     // 阴影贴图 
-    private RenderTexture shadowMap;
+    private RenderTexture shadowMap,cascadedShadowMap;
     
     private readonly CommandBuffer CameraBuffer = new CommandBuffer{name = "Render Camera"};
     private readonly CommandBuffer ShadowBuffer = new CommandBuffer{name = "Render Shadows"};
@@ -50,10 +51,21 @@ public class MyPipeline : RenderPipeline
     private readonly int shadowMapSize;
     private int shadowTileCount;
     private float shadowDistance;
-    public MyPipeline(bool dynamicBatching, bool instancing,int shadowMapSize,float shadowDistance )
+    private int shadowCascades;
+    private Vector3 shadowCascadeSplit;
+    private bool mainLightExists;
+    public MyPipeline(bool dynamicBatching, 
+        bool instancing,
+        int shadowMapSize,
+        float shadowDistance,
+        int shadowCascades,
+        Vector3 shadowCascadeSplit
+        )
     {
         this.shadowMapSize = shadowMapSize;
         this.shadowDistance = shadowDistance;
+        this.shadowCascadeSplit = shadowCascadeSplit;
+        this.shadowCascades = shadowCascades;
         // 使用线性空间设置 
         GraphicsSettings.lightsUseLinearIntensity = true;
         // 开启 动态合批处理 
@@ -198,6 +210,10 @@ public class MyPipeline : RenderPipeline
             RenderTexture.ReleaseTemporary(shadowMap);
             shadowMap = null;
         }
+        if (cascadedShadowMap) {
+            RenderTexture.ReleaseTemporary(cascadedShadowMap);
+            cascadedShadowMap = null;
+        }
         
     }
 
@@ -206,7 +222,8 @@ public class MyPipeline : RenderPipeline
     private void ConfigureLights()
     {
         shadowTileCount = 0;
-        for (var i = 0; i < _cull.visibleLights.Count; i++)
+        mainLightExists = false;
+        for (var i = mainLightExists ? 1 : 0 ; i < _cull.visibleLights.Count; i++)
         {
             // 灯光数量限制
             if (i == maxVisibleLights) break;
@@ -230,6 +247,12 @@ public class MyPipeline : RenderPipeline
                 visibleLightDirectionsOrPositions[i] = v;
                 shadow = ConfigureShadows(i, light.light);
                 shadow.z = 1f;
+                
+                if (i == 0 && shadow.x > 0f && shadowCascades > 0) {
+                    mainLightExists = true;
+                    shadowTileCount -= 1;
+                }
+                
             }
             else
             {
